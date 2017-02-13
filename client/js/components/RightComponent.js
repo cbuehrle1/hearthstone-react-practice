@@ -7,27 +7,29 @@ if (window.HS === undefined) {window.HS = {} }
     constructor() {
       super();
       this.state = {
-        data: []
+        data: [],
+        search: HS.SharedData.searchSubmitted()
       }
     }
 
     componentDidMount() {
 
       var cb = () => {
+
         this.setState({
-          data: HS.SharedData.currentSearch
+          data: HS.SharedData.currentSearch,
+          search: HS.SharedData.searchSubmitted()
         });
       }
 
       HS.SharedData.registerCallbacks(cb);
-      HS.SharedData.getClassCards();
     }
 
     render() {
 
       var content;
 
-      if (this.state.data.length === 0) {
+      if (this.state.search === true) {
         content = <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
       }
       else {

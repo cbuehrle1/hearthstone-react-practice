@@ -47,10 +47,11 @@ table {
 
 .content {
   width: 960px;
-  margin: 50px auto 0 auto;
-  border: solid 1px black; }
+  margin: 50px auto 0 auto; }
   .content img {
-    width: 300px; }
+    width: 300px;
+    display: block;
+    margin: 0 auto; }
 
 .search-header {
   position: fixed;
@@ -58,7 +59,6 @@ table {
   width: 100%;
   background-color: black;
   color: white;
-  border: solid 1px black;
   padding: 15px; }
 
 /*# sourceMappingURL=style.css.map */
