@@ -23,12 +23,39 @@ if (window.HS === undefined) {
     }
 
     _createClass(HeaderComponent, [{
+      key: "runSearch",
+      value: function runSearch(evt) {
+        evt.preventDefault();
+        var query = this.searchQuery.value.capitalize();
+        HS.SharedData.getClassCards(query);
+      }
+    }, {
       key: "render",
       value: function render() {
+        var _this2 = this;
+
         return React.createElement(
           "div",
           { className: "search-header" },
-          "Header"
+          React.createElement(
+            "p",
+            null,
+            "Hearthstone Class Card Search"
+          ),
+          React.createElement(
+            "form",
+            { onSubmit: function onSubmit(evt) {
+                _this2.runSearch(evt);
+              } },
+            React.createElement("input", { ref: function ref(input) {
+                _this2.searchQuery = input;
+              }, placeholder: "Search By Hero Class" }),
+            React.createElement(
+              "button",
+              null,
+              "Search"
+            )
+          )
         );
       }
     }]);

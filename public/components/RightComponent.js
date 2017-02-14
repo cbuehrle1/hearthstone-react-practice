@@ -22,7 +22,8 @@ if (window.HS === undefined) {
       var _this = _possibleConstructorReturn(this, (RightComponent.__proto__ || Object.getPrototypeOf(RightComponent)).call(this));
 
       _this.state = {
-        data: []
+        data: [],
+        search: HS.SharedData.searchSubmitted()
       };
       return _this;
     }
@@ -33,13 +34,14 @@ if (window.HS === undefined) {
         var _this2 = this;
 
         var cb = function cb() {
+
           _this2.setState({
-            data: HS.SharedData.currentSearch
+            data: HS.SharedData.currentSearch,
+            search: HS.SharedData.searchSubmitted()
           });
         };
 
         HS.SharedData.registerCallbacks(cb);
-        HS.SharedData.getClassCards();
       }
     }, {
       key: "render",
@@ -47,7 +49,7 @@ if (window.HS === undefined) {
 
         var content;
 
-        if (this.state.data.length === 0) {
+        if (this.state.search === true) {
           content = React.createElement("img", { src: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" });
         } else {
           content = React.createElement(

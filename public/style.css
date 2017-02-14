@@ -60,5 +60,10 @@ table {
   background-color: black;
   color: white;
   padding: 15px; }
+  .search-header p {
+    display: inline-block;
+    padding: 0 10%; }
+  .search-header form {
+    display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
