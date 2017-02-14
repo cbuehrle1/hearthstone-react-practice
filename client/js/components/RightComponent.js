@@ -33,11 +33,11 @@ if (window.HS === undefined) {window.HS = {} }
         content = <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
       }
       else {
-        content = <ul>{this.state.data.map((card) => {
+        content = <ul>{this.state.data.map((card, index) => {
           if (card.name === null || undefined) {
             return;
           }
-          return <li>{card.name}</li>;
+          return <li key={index}>{card.name}</li>;
         })}</ul>
       }
 

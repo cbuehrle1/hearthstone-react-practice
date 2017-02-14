@@ -22,5 +22,13 @@
   }
   form{
     display: inline-block;
+    width: 20%;
+    input{
+      display: inline;
+    }
+    button{
+      margin-left: 7%;
+      display: inline;
+    }
   }
 }

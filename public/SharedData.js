@@ -27,11 +27,17 @@ if (window.HS === undefined) {
 
       $.ajax({
         url: "https://omgvamp-hearthstone-v1.p.mashape.com/cards/classes/" + classQuery,
-        typr: "GET",
+        type: "GET",
         beforeSend: function beforeSend(xhr) {
           xhr.setRequestHeader("X-Mashape-Key", "lfLi0pd5ComshP5lbLvR2GHC5uP6p1b7AOujsnP5aI9GJrDgG1");
           xhr.setRequestHeader("Accept", "application/json");
         }
+      }).fail(function (err) {
+
+        console.log(err);
+        searchRunning = false;
+        _this.currentSearch = [{ name: "No Results Found" }];
+        _this.runCallbacks();
       }).done(function (data) {
 
         searchRunning = false;

@@ -64,6 +64,12 @@ table {
     display: inline-block;
     padding: 0 10%; }
   .search-header form {
-    display: inline-block; }
+    display: inline-block;
+    width: 20%; }
+    .search-header form input {
+      display: inline; }
+    .search-header form button {
+      margin-left: 7%;
+      display: inline; }
 
 /*# sourceMappingURL=style.css.map */

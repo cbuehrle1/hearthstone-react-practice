@@ -55,13 +55,13 @@ if (window.HS === undefined) {
           content = React.createElement(
             "ul",
             null,
-            this.state.data.map(function (card) {
+            this.state.data.map(function (card, index) {
               if (card.name === null || undefined) {
                 return;
               }
               return React.createElement(
                 "li",
-                null,
+                { key: index },
                 card.name
               );
             })
