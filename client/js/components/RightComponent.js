@@ -33,8 +33,12 @@ if (window.HS === undefined) {window.HS = {} }
         content = <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
       }
       else {
-        content = <p>callback is complete</p>
-        console.log(this.state.data)
+        content = <ul>{this.state.data.map((card) => {
+          if (card.name === null || undefined) {
+            return;
+          }
+          return <li>{card.name}</li>;
+        })}</ul>
       }
 
       return <div className="content">{content}</div>;

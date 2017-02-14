@@ -53,11 +53,19 @@ if (window.HS === undefined) {
           content = React.createElement("img", { src: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" });
         } else {
           content = React.createElement(
-            "p",
+            "ul",
             null,
-            "callback is complete"
+            this.state.data.map(function (card) {
+              if (card.name === null || undefined) {
+                return;
+              }
+              return React.createElement(
+                "li",
+                null,
+                card.name
+              );
+            })
           );
-          console.log(this.state.data);
         }
 
         return React.createElement(
