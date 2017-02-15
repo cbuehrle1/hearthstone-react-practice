@@ -50,8 +50,10 @@ if (window.HS === undefined) {
         var content;
 
         if (this.state.search === true) {
-          content = React.createElement("img", { src: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" });
+          content = React.createElement("img", { src: "http://v6.player.abacast.net/assets/images/loading.gif" });
         } else {
+          console.log(this.state.data);
+
           content = React.createElement(
             "ul",
             null,
@@ -62,7 +64,11 @@ if (window.HS === undefined) {
               return React.createElement(
                 "li",
                 { key: index },
-                card.name
+                React.createElement(
+                  "p",
+                  null,
+                  card.name
+                )
               );
             })
           );
@@ -71,7 +77,20 @@ if (window.HS === undefined) {
         return React.createElement(
           "div",
           { className: "content" },
-          content
+          React.createElement(
+            "div",
+            { className: "draggables" },
+            content
+          ),
+          React.createElement(
+            "div",
+            { className: "droppable" },
+            React.createElement(
+              "h2",
+              null,
+              "Drop Me Here"
+            )
+          )
         );
       }
     }]);

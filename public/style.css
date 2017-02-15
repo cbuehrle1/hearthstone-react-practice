@@ -45,21 +45,34 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+body {
+  background-color: #E0E2DB; }
+
 .content {
+  z-index: 1;
   width: 960px;
   margin: 50px auto 0 auto; }
   .content img {
-    width: 300px;
+    width: 200px;
     display: block;
     margin: 0 auto; }
+  .content p {
+    padding: 2%;
+    background-color: #F4FFFD;
+    margin: 1%;
+    display: inline-block;
+    border-radius: 7px;
+    box-shadow: 1px 1px 1px #B8BDB5; }
 
 .search-header {
+  z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: black;
   color: white;
-  padding: 15px; }
+  padding: 1%;
+  background-color: #5B5B5B;
+  overflow: auto; }
   .search-header p {
     display: inline-block;
     padding: 0 10%; }
@@ -71,5 +84,23 @@ table {
     .search-header form button {
       margin-left: 7%;
       display: inline; }
+
+.draggables {
+  float: left;
+  width: 48%; }
+
+.droppable {
+  float: right;
+  width: 48%;
+  height: 300px;
+  background-color: #F4FFFD;
+  margin: 1%;
+  box-shadow: 1px 1px 1px #B8BDB5;
+  position: relative; }
+  .droppable h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 /*# sourceMappingURL=style.css.map */

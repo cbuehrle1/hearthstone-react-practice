@@ -30,18 +30,20 @@ if (window.HS === undefined) {window.HS = {} }
       var content;
 
       if (this.state.search === true) {
-        content = <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+        content = <img src="http://v6.player.abacast.net/assets/images/loading.gif" />
       }
       else {
+        console.log(this.state.data);
+
         content = <ul>{this.state.data.map((card, index) => {
           if (card.name === null || undefined) {
             return;
           }
-          return <li key={index}>{card.name}</li>;
+          return <li key={index}><p>{card.name}</p></li>;
         })}</ul>
       }
 
-      return <div className="content">{content}</div>;
+      return <div className="content"><div className="draggables">{content}</div><div className="droppable"><h2>Drop Me Here</h2></div></div>;
     }
 
   }
