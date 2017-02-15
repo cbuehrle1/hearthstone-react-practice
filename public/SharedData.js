@@ -41,7 +41,7 @@ if (window.HS === undefined) {
       }).done(function (data) {
 
         searchRunning = false;
-        _this.currentSearch = data;
+        _this.currentSearch = _this.findDuplicates(data);
         _this.runCallbacks();
       });
     },
@@ -59,6 +59,23 @@ if (window.HS === undefined) {
 
     searchSubmitted: function searchSubmitted() {
       return searchRunning;
+    },
+
+    findDuplicates: function findDuplicates(data) {
+
+      var prevResult;
+      var pushToMe = [];
+
+      data.forEach(function (card) {
+
+        if (card.name !== prevResult && card.type !== "Hero") {
+          pushToMe.push(card);
+        }
+
+        prevResult = card.name;
+      });
+
+      return pushToMe;
     }
 
   };

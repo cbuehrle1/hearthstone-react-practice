@@ -19,6 +19,5 @@ if (window.HS === undefined) { window.HS = {} }
 
   }
 
-
   HS.HeaderComponent = HeaderComponent
 })()

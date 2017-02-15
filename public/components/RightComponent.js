@@ -52,7 +52,6 @@ if (window.HS === undefined) {
         if (this.state.search === true) {
           content = React.createElement("img", { src: "http://v6.player.abacast.net/assets/images/loading.gif" });
         } else {
-          console.log(this.state.data);
 
           content = React.createElement(
             "ul",

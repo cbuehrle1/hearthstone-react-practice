@@ -33,7 +33,6 @@ if (window.HS === undefined) {window.HS = {} }
         content = <img src="http://v6.player.abacast.net/assets/images/loading.gif" />
       }
       else {
-        console.log(this.state.data);
 
         content = <ul>{this.state.data.map((card, index) => {
           if (card.name === null || undefined) {

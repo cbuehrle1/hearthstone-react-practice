@@ -39,7 +39,7 @@ if (window.HS === undefined) { window.HS = {}; }
       .done((data) => {
 
         searchRunning = false;
-        this.currentSearch = data;
+        this.currentSearch = this.findDuplicates(data);
         this.runCallbacks();
 
       })
@@ -60,6 +60,24 @@ if (window.HS === undefined) { window.HS = {}; }
 
     searchSubmitted: function () {
       return searchRunning;
+    },
+
+    findDuplicates: function(data) {
+  
+      var prevResult;
+      var pushToMe = [];
+
+      data.forEach((card) => {
+
+        if (card.name !== prevResult && card.type !== "Hero") {
+          pushToMe.push(card);
+        }
+
+        prevResult = card.name;
+
+      });
+
+      return pushToMe
     }
 
   }
