@@ -12,6 +12,8 @@ if (window.HS === undefined) { window.HS = {}; }
 
     currentSearch: [],
 
+    dropTargets: [],
+
     callbacks: [],
 
     getClassCards: function (classQuery) {
@@ -63,7 +65,7 @@ if (window.HS === undefined) { window.HS = {}; }
     },
 
     findDuplicates: function(data) {
-  
+
       var prevResult;
       var pushToMe = [];
 
@@ -77,7 +79,15 @@ if (window.HS === undefined) { window.HS = {}; }
 
       });
 
-      return pushToMe
+      return pushToMe;
+    },
+
+    setDataForDrag: function(item) {
+
+      this.dropTargets.push(item);
+      var output = JSON.stringify(this.dropTargets);
+      return output;
+
     }
 
   }

@@ -16,6 +16,8 @@ if (window.HS === undefined) {
 
     currentSearch: [],
 
+    dropTargets: [],
+
     callbacks: [],
 
     getClassCards: function getClassCards(classQuery) {
@@ -76,6 +78,13 @@ if (window.HS === undefined) {
       });
 
       return pushToMe;
+    },
+
+    setDataForDrag: function setDataForDrag(item) {
+
+      this.dropTargets.push(item);
+      var output = JSON.stringify(this.dropTargets);
+      return output;
     }
 
   };

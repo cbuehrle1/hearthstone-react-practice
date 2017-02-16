@@ -23,7 +23,8 @@ if (window.HS === undefined) {
 
       _this.state = {
         data: [],
-        search: HS.SharedData.searchSubmitted()
+        search: HS.SharedData.searchSubmitted(),
+        droppedTarget: []
       };
       return _this;
     }
@@ -44,14 +45,50 @@ if (window.HS === undefined) {
         HS.SharedData.registerCallbacks(cb);
       }
     }, {
+      key: "dragStartFunction",
+      value: function dragStartFunction(evt) {
+        var input = evt.target.innerText;
+        var output = HS.SharedData.setDataForDrag(input);
+        evt.dataTransfer.setData("text/plain", output);
+      }
+    }, {
+      key: "dragOverFunction",
+      value: function dragOverFunction(evt) {
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = "move";
+      }
+    }, {
+      key: "dropFunction",
+      value: function dropFunction(evt) {
+        evt.preventDefault();
+        var data = evt.dataTransfer.getData("text");
+        var output = JSON.parse(data);
+        console.log(output);
+        this.setState({
+          droppedTarget: output
+        });
+      }
+    }, {
       key: "render",
       value: function render() {
+        var _this3 = this;
 
         var content;
+        var dropArea;
 
         if (this.state.search === true) {
           content = React.createElement("img", { src: "http://v6.player.abacast.net/assets/images/loading.gif" });
         } else {
+
+          if (this.state.droppedTarget.length > 0) {
+            dropArea = React.createElement(
+              "ul",
+              null,
+              this.state.droppedTarget.map(function (target) {
+                return target;
+              })
+            );
+          }
 
           content = React.createElement(
             "ul",
@@ -62,7 +99,9 @@ if (window.HS === undefined) {
               }
               return React.createElement(
                 "li",
-                { key: index },
+                { key: index, id: index, draggable: "true", onDragStart: function onDragStart(evt) {
+                    _this3.dragStartFunction(evt);
+                  } },
                 React.createElement(
                   "p",
                   null,
@@ -83,12 +122,17 @@ if (window.HS === undefined) {
           ),
           React.createElement(
             "div",
-            { className: "droppable" },
+            { className: "droppable", onDragOver: function onDragOver(evt) {
+                _this3.dragOverFunction(evt);
+              }, onDrop: function onDrop(evt) {
+                _this3.dropFunction(evt);
+              } },
             React.createElement(
               "h2",
               null,
               "Drop Me Here"
-            )
+            ),
+            dropArea
           )
         );
       }
