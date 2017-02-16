@@ -82,8 +82,20 @@ if (window.HS === undefined) {
 
     setDataForDrag: function setDataForDrag(item) {
 
+      var currentDragItem = item;
+      var newArr = [];
+
+      this.currentSearch.forEach(function (card, index) {
+
+        if (card.name !== item) {
+          newArr.push(card);
+        }
+      });
+
+      this.currentSearch = newArr;
       this.dropTargets.push(item);
       var output = JSON.stringify(this.dropTargets);
+      this.runCallbacks();
       return output;
     }
 
