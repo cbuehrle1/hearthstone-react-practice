@@ -83,22 +83,28 @@ if (window.HS === undefined) {
     setDataForDrag: function setDataForDrag(item) {
 
       var currentDragItem = item;
-      var newArr = [];
 
-      this.currentSearch.forEach(function (card, index) {
-
-        if (card.name !== item) {
-          newArr.push(card);
-        }
-      });
-
-      this.currentSearch = newArr;
       this.dropTargets.push(item);
       var output = JSON.stringify(this.dropTargets);
       this.runCallbacks();
-      return output;
-    }
 
+      return output;
+    },
+
+    removeItemFromCurrent: function removeItemFromCurrent(item) {
+      var _this2 = this;
+
+      var currentDragItem = item;
+
+      this.currentSearch.forEach(function (card, index) {
+
+        if (card.name === item) {
+          _this2.currentSearch.splice(index, 1);
+        }
+      });
+
+      this.runCallbacks();
+    }
   };
 })();
 //# sourceMappingURL=SharedData.js.map

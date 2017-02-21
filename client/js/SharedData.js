@@ -85,24 +85,29 @@ if (window.HS === undefined) { window.HS = {}; }
     setDataForDrag: function(item) {
 
       var currentDragItem = item
-      var newArr = []
 
-      this.currentSearch.forEach((card, index) => {
-
-        if (card.name !== item) {
-          newArr.push(card);
-        }
-
-      });
-      
-      this.currentSearch = newArr;
       this.dropTargets.push(item);
       var output = JSON.stringify(this.dropTargets);
       this.runCallbacks();
+
       return output;
 
-    }
+    },
 
+    removeItemFromCurrent: function(item) {
+
+      var currentDragItem = item
+
+      this.currentSearch.forEach((card, index) => {
+
+        if (card.name === item) {
+          this.currentSearch.splice(index, 1);
+        }
+
+      });
+
+      this.runCallbacks();
+    }
   }
 
 })()

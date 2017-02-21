@@ -19,7 +19,7 @@ if (window.HS === undefined) {window.HS = {} }
 
         this.setState({
           data: HS.SharedData.currentSearch,
-          search: HS.SharedData.searchSubmitted()
+          search: HS.SharedData.searchSubmitted(),
         });
       }
 
@@ -27,6 +27,7 @@ if (window.HS === undefined) {window.HS = {} }
     }
 
     dragStartFunction(evt) {
+      evt.dataTransfer.effectAllowed = 'move';
       var input = evt.target.innerText
       var output = HS.SharedData.setDataForDrag(input);
       evt.dataTransfer.setData("text/plain", output);
@@ -41,7 +42,7 @@ if (window.HS === undefined) {window.HS = {} }
       evt.preventDefault();
       var data = evt.dataTransfer.getData("text")
       var output = JSON.parse(data);
-      console.log(output);
+
       this.setState({
         droppedTarget: output
       });
@@ -59,8 +60,8 @@ if (window.HS === undefined) {window.HS = {} }
       else {
 
         if (this.state.droppedTarget.length > 0) {
-          dropArea = <ul>{this.state.droppedTarget.map((target) => {
-            return target;
+          dropArea = <ul>{this.state.droppedTarget.map((target, index) => {
+            return <li key={index} >{target}</li>;
           })}
           </ul>
         }
@@ -74,7 +75,7 @@ if (window.HS === undefined) {window.HS = {} }
       }
 
       return <div className="content"><div className="draggables">{content}</div>
-      <div className="droppable" onDragOver={(evt) => { this.dragOverFunction(evt); }} onDrop={(evt) => { this.dropFunction(evt); }}><h2>Drop Me Here</h2>{dropArea}</div></div>;
+      <div className="droppable" onDragOver={(evt) => { this.dragOverFunction(evt); }} onDrop={(evt) => { this.dropFunction(evt); }}>{dropArea}</div></div>;
 
     }
 

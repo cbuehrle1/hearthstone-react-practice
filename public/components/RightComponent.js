@@ -47,6 +47,7 @@ if (window.HS === undefined) {
     }, {
       key: "dragStartFunction",
       value: function dragStartFunction(evt) {
+        evt.dataTransfer.effectAllowed = 'move';
         var input = evt.target.innerText;
         var output = HS.SharedData.setDataForDrag(input);
         evt.dataTransfer.setData("text/plain", output);
@@ -63,7 +64,7 @@ if (window.HS === undefined) {
         evt.preventDefault();
         var data = evt.dataTransfer.getData("text");
         var output = JSON.parse(data);
-        console.log(output);
+
         this.setState({
           droppedTarget: output
         });
@@ -84,8 +85,12 @@ if (window.HS === undefined) {
             dropArea = React.createElement(
               "ul",
               null,
-              this.state.droppedTarget.map(function (target) {
-                return target;
+              this.state.droppedTarget.map(function (target, index) {
+                return React.createElement(
+                  "li",
+                  { key: index },
+                  target
+                );
               })
             );
           }
@@ -127,11 +132,6 @@ if (window.HS === undefined) {
               }, onDrop: function onDrop(evt) {
                 _this3.dropFunction(evt);
               } },
-            React.createElement(
-              "h2",
-              null,
-              "Drop Me Here"
-            ),
             dropArea
           )
         );
